@@ -2,11 +2,6 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-// Advantages of fetching data with React Query
-// 1 - Auto Retries
-// 2 - Auto Refresh
-// 3 - Caching
-
 interface Todo {
 	id: number;
 	title: string;
@@ -20,12 +15,12 @@ const TodoList = () => {
 			.get<Todo[]>("https://jsonplaceholder.typicode.com/todos")
 			.then((res) => res.data);
 
-	const { data: todos } = useQuery({
+	const { data: todos, error } = useQuery<Todo[], Error>({
 		queryKey: ["todos"],
 		queryFn: fetchTodos,
 	});
 
-	// if (error) return <p>{error}</p>;
+	if (error) return <p>{error.message}</p>;
 
 	return (
 		<ul className="list-group">
