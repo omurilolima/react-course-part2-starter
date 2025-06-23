@@ -20,3 +20,32 @@ This repository belongs to part 2 of my React course covering intermediate-level
 - Routing with React Router
 
 You can find the course at https://codewithmosh.com
+
+## Understanding the Application Layers
+
+<img src="/react-course-part2-starter/src/assets/Application Layers.png">
+
+### API Client
+
+At the bottom, we have our API client, which handles sending HTTP requests to our back end.
+
+- APIClient
+
+### HTTP Services
+
+On top of that, we have our HTTP Services, which are essentially instances of API client dedicated to work with specific types of objects. For example, we have o `todoService` for working with todos.
+
+- todoService
+
+### Custom Hooks
+
+Above these layers, we have our custom react query hooks, which use our HTTP services to fetch and update data. In these hooks, we have all the logic for `todoService` managing data in the cache`.
+
+- useTodos,
+- useAddTodo
+
+### Components
+
+Finaly at the top, we have our components, which use our hooks to fetch and update data.
+
+Each layer in this application has a single responsability, resulting in a clean and well organized architecture.
